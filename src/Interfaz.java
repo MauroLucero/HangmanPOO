@@ -66,26 +66,14 @@ public class Interfaz {
 
                     System.out.println("Que rutina quiere actualizar?");
                     id = leer.nextInt();
-                    for (int i = 0; i < longitudRutinas; i++) {
-                        if(rutinaServicio.getListaRutinas().get(i).getId() == id){
-                            rutinaServicio.actualizarRutina(rutinaServicio.getListaRutinas().get(i));
-                        }
-                    }
+                    rutinaServicio.actualizarRutina(id);
                     break;
 
                 case 7:
 
                     System.out.println("Que rutina quiere eliminar?");
                     id = leer.nextInt();
-                    if(longitudRutinas >0){
-                        for (int i = 0; i < longitudRutinas; i++) {
-                            if(rutinaServicio.getListaRutinas().get(i).getId() == id){
-                                rutinaServicio.eliminarRutina(rutinaServicio.getListaRutinas().get(i));
-                            }
-                        }
-                    }else{
-                        System.out.println("No se registran rutinas");
-                    }
+                    rutinaServicio.eliminarRutina(id);
                     break;
 
                 case 8:

@@ -29,26 +29,52 @@ public class RutinaServicio{
         id+=1;
         datosRutina(rutina);
         listaRutinas.add(rutina);
+        System.out.println("Rutina registrada con exito");
     }
 
 
     public void obtenerRutinas(){
-        for (Rutina i : listaRutinas) {
-            System.out.println(i);
+        if(listaRutinas.size()!=0){
+            for (Rutina i : listaRutinas) {
+                System.out.println(i);
+            }
+        }else{
+            System.out.println("No se registran rutinas.");
         }
     }
 
-    public void actualizarRutina(Rutina rutina){
-        int indice = listaRutinas.indexOf(rutina);
-        Rutina auxiliar = new Rutina();
-        auxiliar.setId(rutina.getId());
-        datosRutina(auxiliar);
-        listaRutinas.set(indice,auxiliar);
+    public void actualizarRutina(int id){
+        boolean noEncontrado = true;
+        for (int i = 0; i < listaRutinas.size(); i++) {
+            if(listaRutinas.get(i).getId() == id){
+                datosRutina(listaRutinas.get(i));
+                System.out.println("Rutina actualizada.");
+                noEncontrado = false;
+                break;
+            }
+        }
+        if (noEncontrado) {
+            System.out.println("No se encontró una rutina con el ID: "+id);
+        }
     }
 
-    public void eliminarRutina(Rutina rutina){
-        int indice = listaRutinas.indexOf(rutina);
-        listaRutinas.remove(indice);
+    public void eliminarRutina(int id){
+        if(listaRutinas.size() >0){
+            boolean noEncontrado = true;
+            for (int i = 0; i < listaRutinas.size(); i++) {
+                if(listaRutinas.get(i).getId() == id){
+                    listaRutinas.remove(i);
+                    System.out.println("Rutina eliminada con exito.");
+                    noEncontrado = false;
+                    break;
+                }
+            }
+            if (noEncontrado) {
+                System.out.println("No se encontró una rutina con el ID: "+id);
+            }
+        }else{
+            System.out.println("No se registran rutinas");
+        }
     }
 
     public ArrayList<Rutina> getListaRutinas() {

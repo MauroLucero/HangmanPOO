@@ -37,32 +37,48 @@ public class ClienteServicio {
 
         datosCliente(cliente);
         clientesLista.add(cliente);
+        System.out.println("Cliente registrado");
     }
 
     public void obtenerClientes(){
-        for (Cliente i : clientesLista) {
-            System.out.println(i);
+        if(clientesLista.size()!=0){
+            for (Cliente i : clientesLista) {
+                System.out.println(i);
+            }
+        }else{
+            System.out.println("No hay clientes registrados.");
         }
     }
 
     public void actualizarCliente(int id){
+        boolean noEncontrado = true;
         for (int i = 0; i < clientesLista.size(); i++) {
-            if(this.clientesLista.get(i).getId() == id){
+            if(this.clientesLista.get(i).getId() == id) {
                 datosCliente(this.clientesLista.get(i));
+                System.out.println("Cliente actualizado");
+                noEncontrado = false;
+                break;
             }
         }
-
+        if (noEncontrado){
+            System.out.println("No se encontró el cliente con ID: "+id);
+        }
     }
 
 
     public void eliminarCliente(int id){
         if(this.clientesLista.size() >0){
+            boolean noEncontrado = true;
             for (int i = 0; i < this.clientesLista.size(); i++) {
                 if(clientesLista.get(i).getId() == id){
                    clientesLista.remove(i);
-                }else{
-                    System.out.println("No se encontró clientes con ese ID");
+                    System.out.println("Cliente eliminado con exito.");
+                    noEncontrado = false;
+                   break;
                 }
+            }
+            if (noEncontrado){
+                System.out.println("No se encontró el cliente con ID: "+id);
             }
         }else{
             System.out.println("No se registran clientes");
